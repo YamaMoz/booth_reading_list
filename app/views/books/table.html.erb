@@ -10,7 +10,7 @@
 	<tr>
 		<td><a href="/books/<%= book.id %>"><%= book.title %></a></td>
 		<td><%= book.author %></td>
-		<% @professor_list = BookProfessor.where("book_id = ?", book.id) %>
+		<% @professor_list = BookProfessor.where(book_id: book.id) %>
 		<td>
 		<% @prof_array = [] %>
 		<% @professor_list.each do |professor| %>
@@ -18,7 +18,7 @@
 		<% end %>
 		<%= @prof_array.join(", ") %>
 		</td>
-		<% @course_list = BookCourse.where("book_id = ?", book.id) %>
+		<% @course_list = BookCourse.where(book_id: book.id) %>
 		<td>
 		<% @course_array = [] %>
 		<% @course_list.each do |course| %>
