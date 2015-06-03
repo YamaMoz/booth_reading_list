@@ -1,0 +1,54 @@
+<div class="jumbotron" style="background-image: url(http://upload.wikimedia.org/wikipedia/commons/7/76/Urval_av_de_bocker_som_har_vunnit_Nordiska_radets_litteraturpris_under_de_50_ar_som_priset_funnits_%282%29.jpg); background-size: auto 100%;">
+<div class="container">
+    <div class="row" style="margin: -40px 0px 0px 0px">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+        	<h3>With Booth Reading List you can search the universe of great business books recommended by Booth professors.</h3>
+        </div>
+    </div>
+    <div class="row" style="margin:8px 0px 0px 0px">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+        	<div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title"><b>Lets get started!</b></h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="/books/search_results">
+                  <div class="form-group">
+                    <label for="input_search_by" class="col-sm-2 control-label">Search By:</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" id="input_search_by" name="input_search_by">
+                        <option value="" disabled selected>Select Search Criteria</option>
+                        <option value="title">Title</option>
+                        <option value="author">Author</option>
+                        <option value="isbn_13">ISBN-13</option>
+                        <option value="department">Department</option>
+                        <option value="course_name">Course Name</option>
+                        <option value="course_number">Course Number</option>
+                        <option value="professor">Recommending Professor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="search_terms" class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                  <input type="text" id="search_terms" placeholder="Enter your search terms" class="form-control" name="search_terms">
+              </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+      </div>
+  </form>
+</div>
+</div>
+</div>
+<div class="col-md-2">  	
+</div>
+</div>
+</div>
+</div>

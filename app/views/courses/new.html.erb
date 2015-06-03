@@ -1,0 +1,70 @@
+<!-- Validation failure messages -->
+
+<% if @course.errors.any? %>
+  <% @course.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Course</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_course" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="1">
+
+          <!-- Label and input for course_department -->
+          <div class="form-group">
+            <label for="department_id" class="col-sm-2 control-label">
+              Course Department
+            </label>
+            <div class="col-sm-10">
+              <%= select_tag(:department_id, options_from_collection_for_select(Department.all, :id, :name, @course.department_id), :class => "form-control") %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">
+              Course Title
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="name" name="name" placeholder="Course title" class="form-control" value="<%= @course.name %>">
+            </div>
+          </div>
+
+          <!-- Label and input for course_number -->
+          <div class="form-group">
+            <label for="number" class="col-sm-2 control-label">
+              Course Number
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="number" name="number" placeholder="Course number" class="form-control" value="<%= @course.number %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Course
+              </button>
+              or
+              <a href="/courses">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

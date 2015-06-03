@@ -1,0 +1,91 @@
+<!-- Validation failure messages -->
+
+<% if @course.errors.any? %>
+  <% @course.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Edit Course #<%= @course.id %></h3>
+      </div>
+      <div class="panel-body">
+        <form action="/update_course/<%= @course.id %>" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for name_and_title -->
+          <div class="form-group">
+            <label for="name_and_title" class="col-sm-2 control-label">
+              Name and title
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="name_and_title" name="name_and_title" placeholder="Name and title" class="form-control" value="<%= @course.name_and_title %>">
+            </div>
+          </div>
+
+          <!-- Label and input for user_id -->
+          <div class="form-group">
+            <label for="user_id" class="col-sm-2 control-label">
+              User
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @course.user_id %>">
+            </div>
+          </div>
+
+          <!-- Label and input for department_id -->
+          <div class="form-group">
+            <label for="department_id" class="col-sm-2 control-label">
+              Department
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="department_id" name="department_id" placeholder="Department" class="form-control" value="<%= @course.department_id %>">
+            </div>
+          </div>
+
+          <!-- Label and input for name -->
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">
+              Name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @course.name %>">
+            </div>
+          </div>
+
+          <!-- Label and input for number -->
+          <div class="form-group">
+            <label for="number" class="col-sm-2 control-label">
+              Number
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="number" name="number" placeholder="Number" class="form-control" value="<%= @course.number %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-warning">
+                Update Course
+              </button>
+              or
+              <a href="/courses/<%= @course.id %>">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- End responsive panel example -->

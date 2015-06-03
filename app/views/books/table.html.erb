@@ -1,0 +1,38 @@
+<table class="table table-striped">
+	<tr>
+		<th>Title</th>
+		<th>Author(s)</th>
+		<th>Professor(s)</th>
+		<th>Course(s)</th>
+		<th>Department(s)</th>
+	</tr>
+	<% @books.each do |book| %>
+	<tr>
+		<td><a href="/books/<%= book.id %>"><%= book.title %></a></td>
+		<td><%= book.author %></td>
+		<% @professor_list = BookProfessor.where("book_id = ?", book.id) %>
+		<td>
+		<% @prof_array = [] %>
+		<% @professor_list.each do |professor| %>
+		<% @prof_array.append(professor.professor.name) %>
+		<% end %>
+		<%= @prof_array.join(", ") %>
+		</td>
+		<% @course_list = BookCourse.where("book_id = ?", book.id) %>
+		<td>
+		<% @course_array = [] %>
+		<% @course_list.each do |course| %>
+		<% @course_array.append(course.course.name) %>
+		<% end %>
+		<%= @course_array.join(", ") %>
+		</td>
+		<td>
+		<% @department_array = [] %>
+		<% @course_list.each do |course| %>
+		<% @department_array.append(course.course.department.name) %>
+		<% end %>
+		<%= @department_array.join(", ") %>
+		</td>
+	</tr>
+	<% end %>
+</table>

@@ -1,0 +1,131 @@
+<!-- Validation failure messages -->
+
+<% if @book.errors.any? %>
+  <% @book.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Edit Book #<%= @book.id %></h3>
+      </div>
+      <div class="panel-body">
+        <form action="/update_book/<%= @book.id %>" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for google_description -->
+          <div class="form-group">
+            <label for="google_description" class="col-sm-2 control-label">
+              Google description
+            </label>
+            <div class="col-sm-10">
+              <textarea id="google_description" name="google_description" placeholder="Google description" class="form-control" rows="3"><%= @book.google_description %></textarea>
+            </div>
+          </div>
+
+          <!-- Label and input for type -->
+          <div class="form-group">
+            <label for="type" class="col-sm-2 control-label">
+              Type
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="type" name="type" placeholder="Type" class="form-control" value="<%= @book.type %>">
+            </div>
+          </div>
+
+          <!-- Label and input for appearances_on_list -->
+          <div class="form-group">
+            <label for="appearances_on_list" class="col-sm-2 control-label">
+              Appearances on list
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="appearances_on_list" name="appearances_on_list" placeholder="Appearances on list" class="form-control" value="<%= @book.appearances_on_list %>">
+            </div>
+          </div>
+
+          <!-- Label and input for img_url -->
+          <div class="form-group">
+            <label for="img_url" class="col-sm-2 control-label">
+              Img url
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="img_url" name="img_url" placeholder="Img url" class="form-control" value="<%= @book.img_url %>">
+            </div>
+          </div>
+
+          <!-- Label and input for isbn_13 -->
+          <div class="form-group">
+            <label for="isbn_13" class="col-sm-2 control-label">
+              Isbn 13
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="isbn_13" name="isbn_13" placeholder="Isbn 13" class="form-control" value="<%= @book.isbn_13 %>">
+            </div>
+          </div>
+
+          <!-- Label and input for year_published -->
+          <div class="form-group">
+            <label for="year_published" class="col-sm-2 control-label">
+              Year published
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="year_published" name="year_published" placeholder="Year published" class="form-control" value="<%= @book.year_published %>">
+            </div>
+          </div>
+
+          <!-- Label and input for edition -->
+          <div class="form-group">
+            <label for="edition" class="col-sm-2 control-label">
+              Edition
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="edition" name="edition" placeholder="Edition" class="form-control" value="<%= @book.edition %>">
+            </div>
+          </div>
+
+          <!-- Label and input for author -->
+          <div class="form-group">
+            <label for="author" class="col-sm-2 control-label">
+              Author
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="author" name="author" placeholder="Author" class="form-control" value="<%= @book.author %>">
+            </div>
+          </div>
+
+          <!-- Label and input for title -->
+          <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">
+              Title
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @book.title %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-warning">
+                Update Book
+              </button>
+              or
+              <a href="/books/<%= @book.id %>">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- End responsive panel example -->

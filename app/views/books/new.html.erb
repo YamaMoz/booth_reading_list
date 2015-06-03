@@ -1,0 +1,90 @@
+<!-- Validation failure messages -->
+
+<% if @book.errors.any? %>
+  <% @book.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Book</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_book" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for isbn_13 -->
+          <div class="form-group">
+            <label for="isbn_13" class="col-sm-2 control-label">
+              ISBN-13
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="isbn_13" name="isbn_13" placeholder="Enter the book's unique 13 digit ISBN" class="form-control" value="<%= @book.isbn_13 %>">
+            </div>
+          </div>
+
+          <!-- Label and input for professor -->
+          <div class="form-group">
+            <label for="professor" class="col-sm-2 control-label">
+              Professor
+            </label>
+            <div class="col-sm-10">
+              <%= select_tag(:professor_id, options_from_collection_for_select(Professor.all, :id, :name, @book_professor.professor_id), :class => "form-control") %>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-10" style="padding-top: 5px">
+              Or create a <a href="/professors/new">New Professor</a>
+            </div>
+          </div>
+
+          <!-- Label and input for professor description -->
+          <div class="form-group">
+            <label for="pdesciption" class="col-sm-2 control-label">
+              Professor Notes
+            </label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="3" id="pdescription" name="pdescription" placeholder="Enter the professor's notes on this book, such as a brief description of the book, the reason she recommends the book, or the parts of the book that are being recommended."></textarea>
+            </div>
+          </div>
+
+          <!-- Label and input for year_published -->
+          <div class="form-group">
+            <label for="course_id" class="col-sm-2 control-label">
+              Course
+            </label>
+            <div class="col-sm-10">
+              <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :name_and_title, @book_course.course_id), :class => "form-control") %>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-10" style="padding-top: 5px">
+              Or create a <a href="/courses/new">New Course</a>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Book
+              </button>
+              or
+              <a href="/books">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

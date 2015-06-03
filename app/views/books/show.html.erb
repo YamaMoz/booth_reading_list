@@ -1,0 +1,47 @@
+<div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-primary">
+            <div class="panel-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-2">
+                    <a href="#">
+                      <img class="media-object" src="<%= @book.img_url %>" alt="Getting to Yes" width="180">
+                    </a>
+                  </div>
+                  <div class="col-md-9" style="margin: -20px 0px 0px 0px">
+                    <h3><%= @book.title %>,<small> <%= @book.author %></small></h3>
+                    <p><b>Summary: </b><%= @book.google_description %></p>
+
+                    <p><b>Recommending Professor(s): </b>
+                                    <% @professor_list = BookProfessor.where("book_id = ?", @book.id) %>
+                                    <% @prof_array = [] %>
+                                    <% @professor_list.each do |professor| %>
+                                    <% @prof_array.append(professor.professor.name) %>
+                                    <% end %>
+                                    <span><%= @prof_array.join(", ") %></span>
+                                </p>  
+                                <p><b>Course(s): </b>
+                                    <% @course_list = BookCourse.where("book_id = ?", @book.id) %>
+                                    <% @course_array = [] %>
+                                    <% @course_list.each do |course| %>
+                                    <% @course_array.append(course.course.name) %>
+                                    <% end %>
+                                    <span><%= @course_array.join(", ") %></span>
+                                </p>
+                                <% @rec_list = Pdescription.where("book_id = ?", @book.id) %>
+                                <% if @rec_list[0] != nil %>
+                                    <p><b>Professor Notes:</b></p>
+                                    <% @rec_list.each do |recommendation| %>
+                                        <p><i><%= recommendation.professor.name %>: </i><%= recommendation.description %></p>
+                                    <% end %>
+                                <% end %>
+                  </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
