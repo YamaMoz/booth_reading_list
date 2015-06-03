@@ -16,7 +16,7 @@
 		    			  		<p><b>Summary: </b><%= book.google_description %></p>
 
 		    			  		<p><b>Recommending Professor(s): </b>
-                                    <% @professor_list = BookProfessor.where("book_id = ?", book.id) %>
+                                    <% @professor_list = BookProfessor.where(book_id: book.id) %>
                                     <% @prof_array = [] %>
                                     <% @professor_list.each do |professor| %>
                                     <% @prof_array.append(professor.professor.name) %>
@@ -24,14 +24,14 @@
                                     <span><%= @prof_array.join(", ") %></span>
                                 </p>  
                                 <p><b>Course(s): </b>
-                                    <% @course_list = BookCourse.where("book_id = ?", book.id) %>
+                                    <% @course_list = BookCourse.where(book_id: book.id) %>
                                     <% @course_array = [] %>
                                     <% @course_list.each do |course| %>
                                     <% @course_array.append(course.course.name) %>
                                     <% end %>
                                     <span><%= @course_array.join(", ") %></span>
                                 </p>
-                                <% @rec_list = Pdescription.where("book_id = ?", book.id) %>
+                                <% @rec_list = Pdescription.where(book_id: book.id) %>
                                 <% if @rec_list[0] != nil %>
                                     <p><b>Professor Notes:</b></p>
                                     <% @rec_list.each do |recommendation| %>
