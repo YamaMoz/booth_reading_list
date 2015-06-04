@@ -7,6 +7,6 @@ class Course < ActiveRecord::Base
 	has_many :book_courses
 
 	def self.search(field,search)
-    	where("#{field} like ?", "%#{search}%") 
+    	where("#{field} LIKE '?'", search) 
   	end
 end
