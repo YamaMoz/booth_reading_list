@@ -20,7 +20,7 @@ class BooksController < ApplicationController
       @books = Book.search(@criteria,@terms)
       render 'results'
     elsif @criteria == "course_name"
-      course_na = Course.where(name: "%#{@terms}%")
+      course_na = Course.search("name",@terms)
       book_list = BookCourse.where(course_id: course_na)
       book_array = []
       book_list.each do |result|
