@@ -1,10 +1,25 @@
-<table class="table table-striped">
-	<tr>
-		<th>Title</th>
-		<th>Author(s)</th>
-		<th>Professor(s)</th>
-		<th>Course(s)</th>
-		<th>Department(s)</th>
+<table class="table">
+	<col width="20%">
+	<col width="20%">
+	<col width="20%">
+	<col width="20%">
+	<col width="20%">
+	<tr class="info">
+		<th>Title<span class="right_aligned_span"><a data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"><i class="fa fa-chevron-down"></i></a></span></th>
+		<th>Author(s)<span class="right_aligned_span"><a data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"> <i class="fa fa-chevron-down"></i></a></span></th>
+		<th>Professor(s)<span class="right_aligned_span"><a data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"> <i class="fa fa-chevron-down"></i></a></span></th>
+		<th>Course(s)<span class="right_aligned_span"><a data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"> <i class="fa fa-chevron-down"></i></a></span></th>
+		<th>Department(s)<span class="right_aligned_span"><a data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch"> <i class="fa fa-chevron-down"></i></a></span></th>
+	</tr>
+	<tr class="collapse info" id="collapseSearch">
+	<%= search_form_for @q, url: "/books/table" do |f| %>
+		<th><%= f.text_field :title_cont, :class => "form-control", :placeholder => "Search" %></th>
+		<th><%= f.text_field :author_cont, :class => "form-control", :placeholder => "Search" %></th>
+		<th><%= f.text_field :book_professors_professor_name_cont, :class => "form-control", :placeholder => "Search" %></th>
+		<th><%= f.text_field :book_courses_course_name_cont, :class => "form-control", :placeholder => "Search" %></th>
+		<th><%= f.text_field :book_courses_course_department_name_cont, :class => "form-control", :placeholder => "Search" %></th>
+	<%= f.submit :class => "table_view_button" %>
+	<% end %>
 	</tr>
 	<% @books.each do |book| %>
 	<tr>

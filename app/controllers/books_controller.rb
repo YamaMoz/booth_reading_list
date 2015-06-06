@@ -5,8 +5,8 @@ class BooksController < ApplicationController
     render 'home'
   end
   def table
-    @books = Book.all
-    @book_header = Book.new
+    @q = Book.ransack(params[:q])
+    @books = @q.result(:distinct => true).includes(:book_courses, :book_professors)
   end
   def results
     @criteria = params[:input_search_by]
@@ -73,7 +73,8 @@ class BooksController < ApplicationController
     end
   end
   def index
-    @books = Book.all
+    @q = Book.ransack(params[:q])
+    @books = @q.result(:distinct => true).includes(:book_courses, :book_professors)
   end
 
   def show

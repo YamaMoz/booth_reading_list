@@ -5,6 +5,7 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'ransack'
 #Raghu's model creator gem
 gem 'starter_generators', :git => "http://github.com/rbetina/starter_generators.git", :branch => "simple"
 # Devise users gem
